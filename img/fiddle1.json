@@ -1,0 +1,11 @@
+{
+    "name": "Bonish Fiddle",
+    "description": "Fiddling with fiddles",
+    "image": "ipfs://QmQ9Gcxsp4if1M9eYL5EUqrTRFh2PEn8vnWn9yEuiHGzV9",
+    "attributes": [
+        {
+            "trait_type": "boney",
+            "value": 100
+        }
+    ]
+}
