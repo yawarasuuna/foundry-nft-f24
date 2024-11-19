@@ -37,19 +37,28 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 endif
 
 deploy:
-	@forge script script/DeployFiddlingNFT.s.sol:DeployFiddlingNFT $(NETWORK_ARGS)
+	@forge script script/DeployFiddlingNft.s.sol:DeployFiddlingNft $(NETWORK_ARGS)
 
 mint:
-	@forge script script/Interactions.s.sol:MintFiddlingNFT ${NETWORK_ARGS}
+	@forge script script/Interactions.s.sol:MintFiddlingNft ${NETWORK_ARGS}
 
 deployMood:
 	@forge script script/DeployMoodNft.s.sol:DeployMoodNft $(NETWORK_ARGS)
 
+deployMoodSepolia:
+	@forge script script/DeployMoodNft.s.sol:DeployMoodNft --rpc-url $(SEPOLIA_RPC_URL) --account $(DEV_ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+
 mintMoodNft:
 	@forge script script/Interactions.s.sol:MintMoodNft $(NETWORK_ARGS)
 
+mintMoodNftSepolia:
+	@forge script script/Interactions.s.sol:MintMoodNft --rpc-url $(SEPOLIA_RPC_URL) --account $(DEV_ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+
 flipMoodNft:
 	@forge script script/Interactions.s.sol:FlipMoodNft $(NETWORK_ARGS)
+	
+flipMoodNftSepolia:
+	@forge script script/Interactions.s.sol:FlipMoodNft --rpc-url $(SEPOLIA_RPC_URL) --account $(DEV_ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 
 zkdeploy: 
 	@forge create src/OurToken.sol:OurToken --rpc-url http://127.0.0.1:8011 --account $(DEV_ACCOUNT) --legacy --zksync

@@ -6,8 +6,9 @@ import {DeployMoodNft} from "../../script/DeployMoodNft.s.sol";
 import {MoodNft} from "../../src/MoodNft.sol";
 
 contract MoodNftIntegrationTest is Test {
-    MoodNft moodNft;
-    DeployMoodNft deployerMoodNft;
+    MoodNft private moodNft;
+    DeployMoodNft private deployerMoodNft;
+
     string public constant HAPPY_SVG_IMAGE_URI =
         "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgIGhlaWdodD0iNDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgZmlsbD0ieWVsbG93IiByPSI3OCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGcgY2xhc3M9ImV5ZXMiPgogICAgPGNpcmNsZSBjeD0iNzAiIGN5PSI4MiIgcj0iMTIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPgogIDwvZz4KICA8cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+Cjwvc3ZnPg==";
     string public constant SAD_SVG_IMAGE_URI =
@@ -39,9 +40,6 @@ contract MoodNftIntegrationTest is Test {
         console2.log(moodNft.tokenURI(0));
         console2.log(SAD_SVG_URI);
 
-        assertEq(
-            keccak256(abi.encodePacked(moodNft.tokenURI(0))),
-            keccak256(abi.encodePacked(SAD_SVG_URI))
-        );
+        assertEq(keccak256(abi.encodePacked(moodNft.tokenURI(0))), keccak256(abi.encodePacked(SAD_SVG_URI)));
     }
 }

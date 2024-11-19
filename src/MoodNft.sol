@@ -41,10 +41,7 @@ contract MoodNft is ERC721 {
 
     mapping(uint256 => Mood) private s_tokenIdToMood;
 
-    constructor(
-        string memory happySvgImageUri,
-        string memory sadSvgImageUri
-    ) ERC721("Mood", "MO") {
+    constructor(string memory happySvgImageUri, string memory sadSvgImageUri) ERC721("Mood", "MO") {
         s_tokenCounter = 0;
         s_happySvgImageUri = happySvgImageUri;
         s_sadSvgImageUri = sadSvgImageUri;
@@ -59,10 +56,10 @@ contract MoodNft is ERC721 {
     function flipMood(uint256 tokenId) public {
         if (!_isAuthorized(_ownerOf(tokenId), msg.sender, tokenId)) {
             revert MoodNft__UnauthorizedAccessToFlipMood();
-        // if (
-        //     getApproved(tokenId) != msg.sender && ownerOf(tokenId) != msg.sender)
-        // ) {
-        //     revert MoodNft__UnauthorizedAccessToFlipMood();
+            // if (
+            //     getApproved(tokenId) != msg.sender && ownerOf(tokenId) != msg.sender)
+            // ) {
+            //     revert MoodNft__UnauthorizedAccessToFlipMood();
         }
         if (s_tokenIdToMood[tokenId] == Mood.HAPPY) {
             s_tokenIdToMood[tokenId] = Mood.SAD;
@@ -75,9 +72,7 @@ contract MoodNft is ERC721 {
         return "data:application/json;base64,";
     }
 
-    function tokenURI(
-        uint256 tokenId
-    ) public view override returns (string memory) {
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
         string memory imageURI;
         if (s_tokenIdToMood[tokenId] == Mood.HAPPY) {
             imageURI = s_happySvgImageUri;
@@ -94,22 +89,21 @@ contract MoodNft is ERC721 {
         //     '"}'
         // );
 
-        return
-            string(
-                abi.encodePacked(
-                    _baseURI(),
-                    Base64.encode(
-                        bytes(
-                            abi.encodePacked(
-                                '{"name":"',
-                                name(),
-                                '","description": "An NFT that reflects the owners mood.", "attributes":[{"trait_type": "moodiness","value": 100}],"image": "',
-                                imageURI,
-                                '"}'
-                            )
+        return string(
+            abi.encodePacked(
+                _baseURI(),
+                Base64.encode(
+                    bytes(
+                        abi.encodePacked(
+                            '{"name":"',
+                            name(),
+                            '","description": "An NFT that reflects the owners mood.", "attributes":[{"trait_type": "moodiness","value": 100}],"image": "',
+                            imageURI,
+                            '"}'
                         )
                     )
                 )
-            );
+            )
+        );
     }
 }

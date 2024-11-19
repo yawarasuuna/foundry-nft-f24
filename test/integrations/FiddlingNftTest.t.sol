@@ -20,19 +20,13 @@ contract FiddlingNftTest is Test {
     function testNameIsCorrect() public view {
         string memory expectedName = "Fiddle";
         string memory actualName = fiddlingNft.name();
-        assert(
-            keccak256(abi.encodePacked(expectedName)) ==
-                keccak256(abi.encodePacked(actualName))
-        );
+        assert(keccak256(abi.encodePacked(expectedName)) == keccak256(abi.encodePacked(actualName)));
     }
 
     function testSymbolIsCorrect() public view {
         string memory expectedSymbol = "FIDDL";
         string memory actualSymbol = fiddlingNft.symbol();
-        assert(
-            keccak256(abi.encodePacked(expectedSymbol)) ==
-                keccak256(abi.encodePacked(actualSymbol))
-        );
+        assert(keccak256(abi.encodePacked(expectedSymbol)) == keccak256(abi.encodePacked(actualSymbol)));
     }
 
     modifier MinterMintsNft() {
@@ -43,10 +37,7 @@ contract FiddlingNftTest is Test {
 
     function testCanMindAndHaveABalance() public MinterMintsNft {
         assert(fiddlingNft.balanceOf(MINTER) == 1);
-        assert(
-            keccak256(abi.encodePacked(FIDDLE)) ==
-                keccak256(abi.encodePacked(fiddlingNft.tokenURI(0)))
-        );
+        assert(keccak256(abi.encodePacked(FIDDLE)) == keccak256(abi.encodePacked(fiddlingNft.tokenURI(0))));
     }
 
     function testOwnerOfNftIsMinter() public MinterMintsNft {
