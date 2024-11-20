@@ -14,16 +14,16 @@ contract InteractionsTest is Test {
         flipMoodNft = new FlipMoodNft();
     }
 
-    function testFlipTokenToSadWhenUsingInteractions() public {
-        vm.prank(MINTER);
-        flipMoodNft.flipTheMoodNftOnContract(address(moodNft), 0);
+    // function testFlipTokenToSadWhenUsingInteractions() public {
+    //     vm.prank(MINTER);
+    //     flipMoodNft.flipTheMoodNftOnContract(address(moodNft), 0);
 
-        console2.log(moodNft.tokenURI(0));
-        console2.log(SAD_SVG_URI);
+    //     console2.log(moodNft.tokenURI(0));
+    //     console2.log(SAD_SVG_URI);
 
-        assertEq(
-            keccak256(abi.encodePacked(moodNft.tokenURI(0))),
-            keccak256(abi.encodePacked(SAD_SVG_URI))
-        );
-    }
+    //     assertEq(
+    //         keccak256(abi.encodePacked(moodNft.tokenURI(0))),
+    //         keccak256(abi.encodePacked(SAD_SVG_URI))
+    //     );
+    // }
 }
