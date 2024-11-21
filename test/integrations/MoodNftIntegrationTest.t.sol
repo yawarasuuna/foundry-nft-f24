@@ -28,11 +28,9 @@ contract MoodNftIntegrationTest is Test {
         moodNft.mintNft();
         _;
     }
-
     function testViewTokenURIIntegration() public minterMints {
         console2.log(moodNft.tokenURI(0));
     }
-
     function testFlipTokenToSad() public minterMints {
         vm.prank(MINTER);
         moodNft.flipMood(0);
