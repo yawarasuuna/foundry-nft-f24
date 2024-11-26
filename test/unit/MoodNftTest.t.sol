@@ -6,6 +6,7 @@ import {MoodNft} from "../../src/MoodNft.sol";
 
 contract MoodNftTest is Test {
     MoodNft moodNft;
+    uint256 public constant TOKEN_COUNTER = 0;
     string public constant HAPPY_SVG_IMAGE_URI =
         "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgIGhlaWdodD0iNDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgZmlsbD0ieWVsbG93IiByPSI3OCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGcgY2xhc3M9ImV5ZXMiPgogICAgPGNpcmNsZSBjeD0iNzAiIGN5PSI4MiIgcj0iMTIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPgogIDwvZz4KICA8cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+Cjwvc3ZnPg==";
     string public constant SAD_SVG_IMAGE_URI =
@@ -15,6 +16,29 @@ contract MoodNftTest is Test {
 
     function setUp() public {
         moodNft = new MoodNft(HAPPY_SVG_IMAGE_URI, SAD_SVG_IMAGE_URI);
+    }
+
+    function testConstructorDeployedCorrectlyWithEmptyTokenCounter() public view {
+        uint256 expectedTokenCounter = TOKEN_COUNTER;
+        uint256 actualTokenCounter = moodNft.getTokenCounter();
+
+        assert(expectedTokenCounter == actualTokenCounter);
+    }
+
+    function testConstructorDeployedCorrectlyHappySVGImageURI() public view {
+        string memory expectedHappySVGImageURI = HAPPY_SVG_IMAGE_URI;
+        string memory actualHappySVGImageURI = moodNft.getHappySVGImageURI();
+
+        assertEq(
+            keccak256(abi.encodePacked(expectedHappySVGImageURI)), keccak256(abi.encodePacked(actualHappySVGImageURI))
+        );
+    }
+
+    function testConstructorDeployedCorrectlySadSVGImageURI() public view {
+        string memory expectedSadSVGImageURI = SAD_SVG_IMAGE_URI;
+        string memory actualSadSVGImageURI = moodNft.getSadSVGImageURI();
+
+        assertEq(keccak256(abi.encodePacked(expectedSadSVGImageURI)), keccak256(abi.encodePacked(actualSadSVGImageURI)));
     }
 
     function testViewTokenURI() public {
