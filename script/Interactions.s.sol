@@ -6,11 +6,11 @@ import {DevOpsTools} from "lib/foundry-devops/src/DevOpsTools.sol";
 import {FiddlingNft} from "../src/FiddlingNft.sol";
 import {MoodNft} from "../src/MoodNft.sol";
 
-contract MintFiddlingNFT is Script {
+contract MintFiddlingNft is Script {
     string public constant FIDDLE = "ipfs://QmTQZoFzvvUfSRriTZB1ofPDBX5JTeVCygSfNqyk6CnCXz";
 
     function run() external {
-        address mostRecentlyDeployedFiddlingNft = DevOpsTools.get_most_recent_deployment("FiddlingNFT", block.chainid);
+        address mostRecentlyDeployedFiddlingNft = DevOpsTools.get_most_recent_deployment("FiddlingNft", block.chainid);
         mintNftOnFiddlingContract(mostRecentlyDeployedFiddlingNft);
     }
 
