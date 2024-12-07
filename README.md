@@ -1,6 +1,6 @@
 # Foundry NFT
 
-Learning from Cyfrin Solidity Course. If you also want to learn, got to:
+Learning from Cyfrin Solidity Course. If you also want to learn, go to:
 
 *[⭐️ (7:40:56) | Lesson 11: Foundry NFT](https://www.youtube.com/watch?v=sas02qSFZ74&t=27656s)*
 
